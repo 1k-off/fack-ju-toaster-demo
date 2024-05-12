@@ -1,0 +1,27 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = null;
+	string machineName = Environment.MachineName;
+}
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>@Model.Value("pageTitle")</title>
+		<meta charset="utf-8" />
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="row section">
+			    <h1>@Model.Value("pageTitle")</h1>
+				<div class="col-md-12">
+				    @Model.Value("bodyText")
+				    <p>Machine Name: @machineName</p>
+				</div>				
+			</div>
+		</div>
+	</body>
+</html>

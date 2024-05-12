@@ -1,0 +1,9 @@
+k6/har/*.har
+k6/k8s/tests/*.yml
+k6/k8s/tests/*.yaml
+k6/tests/*.js
+terraform.tfvars
+*.tfstate
+*.tfstate.backup
+.terraform
+.terraform.lock.hcl

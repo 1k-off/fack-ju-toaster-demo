@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lt-lb-umbr-demo
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: lt-lb-umbr-demo.k3s.ua.ukad.dev
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: lt-lb-umbr-demo
+                port:
+                  number: 8080

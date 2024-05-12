@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lt-lb-umbr-demo
+  namespace: default
+  labels:
+    app: lt-lb-umbr-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lt-lb-umbr-demo
+  template:
+    metadata:
+      labels:
+        app: lt-lb-umbr-demo
+    spec:
+      containers:
+      - name: lt-lb-umbr-demo
+        image: kosar/lt-lb-umbr-demo:latest
+        imagePullPolicy: Always
+        resources: 
+          limits:
+            memory: "512Mi"
+        ports:
+          - containerPort: 8080
+            name: http
+        env:
+          - name: ConnectionStrings__umbracoDbDSN
+            value: "Data Source=|DataDirectory|/Umbraco.sqlite.db;Cache=Shared;Foreign Keys=True;Pooling=True"
+          - name: ConnectionStrings__umbracoDbDSN_ProviderName
+            value: "Microsoft.Data.Sqlite"
+        volumeMounts:
+          - name: lt-lb-umbr-demo-data
+            mountPath: /app/umbraco/Data
+      volumes:
+        - name: lt-lb-umbr-demo-data
+          persistentVolumeClaim:
+            claimName: lt-lb-umbr-demo-data
+      restartPolicy: Always

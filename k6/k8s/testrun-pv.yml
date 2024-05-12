@@ -1,0 +1,18 @@
+apiVersion: k6.io/v1alpha1
+kind: TestRun
+metadata:
+  name: fack-ju-toaster-testrun
+  namespace: default
+spec:
+  parallelism: 12
+  script:
+    volumeClaim:
+      name: fack-ju-toaster-tests
+      file: main.js       # File is relative to /test/ directory within volume
+  arguments:  --tag testid=demo --out experimental-prometheus-rw
+  runner:
+    env:
+      - name: K6_PROMETHEUS_RW_SERVER_URL
+        value: http://prometheus-stack-kube-prom-prometheus.observability.svc.cluster.local:9090/api/v1/write
+
+

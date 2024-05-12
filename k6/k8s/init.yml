@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init
+  namespace: default
+  labels:
+    app: init
+spec:
+  containers:
+    - image: busybox
+      command:
+        - sleep
+        - "3600"
+      imagePullPolicy: IfNotPresent
+      name: busybox
+      volumeMounts:
+        - name: tests
+          mountPath: /test
+  volumes:
+    - name: tests
+      persistentVolumeClaim:
+        claimName: fack-ju-toaster-tests
+  restartPolicy: Always
