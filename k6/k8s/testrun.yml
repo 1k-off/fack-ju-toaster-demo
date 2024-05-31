@@ -4,12 +4,12 @@ metadata:
   name: fack-ju-toaster-testrun
   namespace: default
 spec:
-  parallelism: 12
+  parallelism: 5
   script:
     configMap:
       name: k6-tests
-      file: main.js
-  arguments:  --tag testid=demo --out experimental-prometheus-rw
+      file: ukadwebsite-direct.js
+  arguments:  --tag testid=megasupertest --out experimental-prometheus-rw
   runner:
     env:
       - name: K6_PROMETHEUS_RW_SERVER_URL

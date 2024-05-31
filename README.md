@@ -1,12 +1,18 @@
+![img](img.webp)
 # Infrastructure
 
 Setup infrastructure based on your needs. 
 
 ## [k6 local]
+- [Installation](https://k6.io/docs/get-started/installation/)
+- [Metrics](https://k6.io/docs/using-k6/metrics/reference/)
 
+```
+docker run -it --rm -v $(pwd):/app -p 5665:5665 grafana/k6 run --out web-dashboard /app/test.js
+```
 ## [k6 distributed]
 - [AWS](./infrastructure/terraform/aws/README.md)
-- [Azure](./infrastructure/terraform/azure/README.md) NOT TESTED
+- [Azure](./infrastructure/terraform/azure/README.md) NOT TESTED, NOT FINISHED
 
 # How to
 1. Write tests
@@ -60,3 +66,8 @@ Execute the following commands between 2 and 4 skipping 3. And use testrun-pv.ym
    ```
    kubectl delete -f k6/k8s/init.yml
    ```
+   
+# Useful links
+- [k6 recorder](https://k6.io/docs/test-authoring/create-tests-from-recordings/using-the-browser-recorder/)
+- [k6 har converter](https://k6.io/docs/test-authoring/create-tests-from-recordings/using-the-har-converter/)
+- [HAR cleaner](https://thameera.com/har_cleaner/)
